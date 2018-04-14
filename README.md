@@ -17,6 +17,7 @@ A program to help improve the user experience of the visually impaired when work
 [Prerequisites](#prerequisites)<br/>
 [Procedure](#procedure)<br/>
 [Run the sample application](#run_the_sample_application)<br/>
+[OvenBot Presentation](https://devpost.com/software/making-a-meal)<br/>
 [Conclusion](#conclusion)<br/>
 
 # <a name="prerequisites"></a>Prerequisites

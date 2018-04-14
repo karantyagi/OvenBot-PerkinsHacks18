@@ -4,21 +4,16 @@
 
 import numpy as np
 import cv2
+import win32com.client as wincl
+
 
 # parameters
-
-threshold = 100  #  BINARY threshold
-blurValue = 41  # GaussianBlur parameter
-bgSubThreshold = 100
-
 # Constants for finding range of skin color in YCrCb
-min_YCrCb = np.array([0,133,77],np.uint8)
-max_YCrCb = np.array([255,173,127],np.uint8)
-
+timer = 0
 fps = 30
 
 def getImage():
-    cv2.namedWindow("webcam-feed")
+    #cv2.namedWindow("webcam-feed")
     cam = cv2.VideoCapture(0)
 
     if cam.isOpened(): # try to get the first frame
@@ -74,7 +69,7 @@ def getImage():
         y = 0
         w = 0
         h = 0
-        area = 00
+        area = 0
         bigContour = None
         for pic, contour in enumerate(contours):
             area = cv2.contourArea(contour)
@@ -88,7 +83,7 @@ def getImage():
         # Write some Text
         font = cv2.FONT_HERSHEY_SIMPLEX
         bottomLeftCornerOfText = (10,500)
-        position = (int(x+h/2),int(y+h/2))
+        position = (int(x+(w/2)),int(y+(h/2)))
         fontScale = 1
         fontColor = (0,255,0)
         lineType  = 2
@@ -102,7 +97,15 @@ def getImage():
         cv2.imshow("yellow",res2)
 
         frames+=1
-        timer = int(frames/fps)
+        timer = frames/fps
+        if timer % 3 == 0:
+            speak_out = "GO LEFT"
+            speak = wincl.Dispatch("SAPI.SpVoice")
+            speak.Speak(speak_out)
+            print("Bot spoke! | msg: {} at time : {} sec".format(speak_out,timer))
+            frame+=1
+            timer = frames/fps
+
         key = cv2.waitKey(20) # milliseconds
         if frames%30 == 0:
             print("Time: {} secs \r".format(timer),end="")

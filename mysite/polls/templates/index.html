@@ -10,7 +10,8 @@
   <body>
       {{ key }}
 
-<link href="../css/pretty.css" rel="stylesheet" media="screen">
+{% load static %}
+<link href="{% static 'polls/pretty.css' %}" rel="stylesheet" media="screen">
 
   <h1>
     OVENBOT

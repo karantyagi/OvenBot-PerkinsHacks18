@@ -19,10 +19,12 @@ A program to help improve the user experience of the visually impaired when work
 
 # <a name="prerequisites"></a>Prerequisites
 ## Platform requirements
-The program was developed for Windows 10, MAC OSX and Python 3.3+.
+The program was developed for Windows 10, MAC OSX.
+Language(s) and/or framework(s) used: Python, HTML, CSS, Javascript, Django, pip
 
 ## Pyttsx text to speech
  * Pytsx is a cross-platform text-to-speech wrapper. <br/>
+
  * It uses different speech engines based on your operating system: <br/>
  * nsss – NSSpeechSynthesizer on Mac OS X 10.5 and higher <br/>
  * sapi5 – SAPI5 on Windows XP, Windows Vista, and (untested) Windows 7 <br/>
@@ -62,8 +64,12 @@ run ` sudo easy_install pip` on MAC OSX
 
 # <a name="procedure"></a>Procedure
 ## Getting image 
+We used Opencv to read the images continuously. After every n seconds (ex. 3s), we write the image to the disk, process it and delete it for calibration only once. In subsequent loops, we just extract the new coordinates of the marker and pass it to the module to compare with the original image coordinates.
 
 ## Detecting Text from Image
+The callibration image is sent to the Google OCR API to obtain all the text with four boundary cooordinates as a response to each instance of text.  
+ * Texts close to each other are combined using the above coordinates.
+ * The finger coordinates are obtained every ns (ex. 3s). This cooordinates are used to direct the finger coordinates to the destination    coordinates, in short a `GPS`. Achieved using custom algorithms.
 
 ## Converting Text to Speech
 In this section, the words are spoken to the user by employing the power of the IBM Watson text to speech API. </br>

@@ -37,7 +37,6 @@ Chocolatey installs in seconds. You are just a few steps from running choco righ
 2. Copy the text specific to your command shell - cmd.exe or powershell.exe. <br/>
 cmd:
 ` @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"` <br/>
-<br/>
 powershell:
 ` Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))` <br/>
 3. Paste the copied text into your shell and press Enter. <br/>

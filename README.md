@@ -1,4 +1,4 @@
-  
+
 # PerkinsHacks18 - `Make a Meal`
  
 # Introduction
@@ -19,7 +19,7 @@ A program to help improve the user experience of the visually impaired when work
 
 # <a name="prerequisites"></a>Prerequisites
 ## Platform requirements
-The program was developed for Windows 10, iOS and Python 3.3+.
+The program was developed for Windows 10, MAC OSX and Python 3.3+.
 
 ## Pyttsx text to speech
  * Pytsx is a cross-platform text-to-speech wrapper. <br/>
@@ -51,7 +51,9 @@ Once you’ve run this command, you should be able to launch Python directly fro
 ### Installing pip
 The two most crucial third-party Python packages are setuptools and pip, which let you download, install and uninstall any compliant Python software product with a single command. It also enables you to add this network installation capability to your own Python software with very little work.
 All supported versions of Python 3 include pip, so just make sure it’s up to date: <br/>
-run ` python -m pip install -U pip`
+run ` python -m pip install -U pip` on Windows <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR <br/>
+run ` sudo easy_install pip` on MAC OSX
 
 ### Install with pip (using pyenv, pipenv or virtualenv):
 ` sudo pip install pyttsx`

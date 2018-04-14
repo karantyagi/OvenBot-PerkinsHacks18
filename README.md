@@ -9,7 +9,7 @@ A program to help improve the user experience of the visually impaired when work
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Max Davidowitz<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Winston Moh T.<br/> </i>
          
-@PerkinsHacks
+@PerkinsHacks - Perkins School for the Blind
 
 # Table of Contents
 [Prerequisites](#prerequisites)<br/>

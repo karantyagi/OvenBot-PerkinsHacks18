@@ -13,7 +13,7 @@ A program to help improve the user experience of the visually impaired when work
 
 # Table of Contents
 [Prerequisites](#prerequisites)<br/>
-[Get API Key](#get_api_key)<br/>
+[Procedure](#procedure)<br/>
 [Run the sample application](#run_the_sample_application)<br/>
 [Conclusion](#conclusion)<br/>
 
@@ -60,10 +60,14 @@ run ` sudo easy_install pip` on MAC OSX
 ### Have pip installed and run:
 ` pip install pywin32 `  (for win32com.client)
 
-# <a name="get_api_key"></a>Get API Key
-Subscribe to the Speech Recognition API, and get a free trial subscription key.
-The Speech API is part of Cognitive Services (previously Project Oxford). You can get free trial subscription keys from the Cognitive Services subscription page. After you select the Speech API, select Get API Key to get the key. It returns a primary and secondary key. Both keys are tied to the same quota, so you can use either key. <br/>
-Enter API KEY in the space for api_key in the code.
+# <a name="procedure"></a>Procedure
+## Getting image 
+
+## Detecting Text from Image
+
+## Converting Text to Speech
+In this section, the words are spoken to the user by employing the power of the IBM Watson text to speech API. </br>
+Django was used as a web framework to load the python script at the back-end site and comunicates with the user.
 
 # <a name="run_the_sample_application"></a>Run the sample application
 After the installing the different libraries, execute the python program.

@@ -1,4 +1,4 @@
- 
+  
 # PerkinsHacks18 - `Make a Meal`
  
 # Introduction
@@ -35,9 +35,9 @@ check https://chocolatey.org/install and http://docs.python-guide.org/en/latest/
 Chocolatey installs in seconds. You are just a few steps from running choco right now!
 1. First, ensure that you are using an administrative shell - you can also install as a non-admin, check out Non-Administrative Installation. <br/>
 2. Copy the text specific to your command shell - cmd.exe or powershell.exe. <br/>
-cmd:
+ * cmd:
 ` @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"` <br/>
-powershell:
+ * powershell:
 ` Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))` <br/>
 3. Paste the copied text into your shell and press Enter. <br/>
 4. Wait a few seconds for the command to complete. <br/>

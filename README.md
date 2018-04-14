@@ -1,3 +1,4 @@
+
 ## PerkinsHacks18 - `Make a Meal`
  
 # Introduction
@@ -25,10 +26,34 @@ It uses different speech engines based on your operating system:
 nsss – NSSpeechSynthesizer on Mac OS X 10.5 and higher
 sapi5 – SAPI5 on Windows XP, Windows Vista, and (untested) Windows 7
 espeak – eSpeak on any distro / platform that can host the shared library (e.g., Ubuntu / Fedora Linux)
+Here we use the IBM WATSON Text To Speech API SERVICE
 
-## Install with pip (using pyenv, pipenv or virtualenv):
+## Install Chocolatey, Python 3+ and pip on System:
+check https://chocolatey.org/install and http://docs.python-guide.org/en/latest/starting/install3/win/ for more resources.
+### Installing Chocolatey
+Chocolatey installs in seconds. You are just a few steps from running choco right now!
+1. First, ensure that you are using an administrative shell - you can also install as a non-admin, check out Non-Administrative Installation.
+2. Copy the text specific to your command shell - cmd.exe or powershell.exe.
+cmd:
+`@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
+powershell:
+`Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))`
+3. Paste the copied text into your shell and press Enter.
+4. Wait a few seconds for the command to complete.
+5. If you don't see any errors, you are ready to use Chocolatey! Type choco or choco -? now.
+
+Once done, installing Python 3 is very simple, because Chocolatey pushes Python 3 as the default.
+run `choco install python`
+Once you’ve run this command, you should be able to launch Python directly from to the console. (Chocolatey is fantastic and automatically adds Python to your path.)
+
+### Installing pip
+The two most crucial third-party Python packages are setuptools and pip, which let you download, install and uninstall any compliant Python software product with a single command. It also enables you to add this network installation capability to your own Python software with very little work.
+All supported versions of Python 3 include pip, so just make sure it’s up to date:
+run `python -m pip install -U pip`
+
+### Install with pip (using pyenv, pipenv or virtualenv):
 `sudo pip install pyttsx`
-## Have pip installed and run
+### Have pip installed and run:
 ` pip install pywin32 `  (for win32com.client)
 
 # <a name="get_api_key"></a>Get API Key

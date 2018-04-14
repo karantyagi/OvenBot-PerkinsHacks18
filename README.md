@@ -31,7 +31,7 @@ The program was developed for Windows 10, MAC OSX and Python 3.3+.
 
 ## Install Chocolatey, Python 3+ and pip on System:
 check https://chocolatey.org/install and http://docs.python-guide.org/en/latest/starting/install3/win/ for more resources.
-### Installing Chocolatey
+### Installing Chocolatey on Windows
 Chocolatey installs in seconds. You are just a few steps from running choco right now!
 1. First, ensure that you are using an administrative shell - you can also install as a non-admin, check out Non-Administrative Installation. <br/>
 2. Copy the text specific to your command shell - cmd.exe or powershell.exe. <br/>

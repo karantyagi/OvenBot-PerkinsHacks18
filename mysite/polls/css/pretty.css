@@ -1,3 +1,11 @@
+body {
+    background-color: blue;
+    -webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+}
+
 h1 {
     font: 200 100px/1.8 'Roboto', sans-serif;
     color: #FFFFFF;
@@ -26,11 +34,4 @@ h1 {
     100% {
         background-color: #864cbf
     }
-}
-
-body {
-    -webkit-animation: bgcolor 20s infinite;
-    animation: bgcolor 10s infinite;
-    -webkit-animation-direction: alternate;
-    animation-direction: alternate;
 }

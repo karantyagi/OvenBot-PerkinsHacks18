@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title> Testing Django</title>
+  </head>
+  <body>
+      {{ key }}
+
+  <h1>
+    Welcome to my page.
+  </h1>
+{{val}}
+  <form action="/home/" method="post">
+    {% csrf_token %}
+    <input type="text" id="text_val" name="text_val">test</input>
+    <button type="submit">post</button>
+  </form>
+  </body>
+</html>

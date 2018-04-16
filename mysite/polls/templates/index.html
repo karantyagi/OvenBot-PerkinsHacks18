@@ -4,23 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
+    <link type="text/css" href="C:/Users/Dell XPS/Documents/GitHub/PerkinsHacks18/mysite/polls/css/pretty.css" rel="stylesheet" />
     <title> Testing Django</title>
   </head>
 
   <body>
       {{ key }}
 
-<link href="../css/pretty.css" rel="stylesheet" media="screen">
-
   <h1>
-    OVENBOT
-=======
-  <h1>
+    OVENBOT </br>
+    ===================================================================
+  <h1><i>
     Welcome to the Make a meal Homepage!
-  </h1>
+  </i></h1>
   <form action="/home/" method="post">
     {% csrf_token %}
-    <input type="text" id="text_val" name="text_val">test</input>
+    <input type="text" id="text_val" name="text_val" placeholder="test"></input>
     <button type="submit">post</button>
   </form>
   </body>

@@ -20,3 +20,4 @@ urlpatterns = [
 	path('home/', include('polls.urls')),
 
 ]
+#http://172.18.6.138:8000/home/

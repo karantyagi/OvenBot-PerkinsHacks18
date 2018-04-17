@@ -1,0 +1,5 @@
+numpy==1.13.3
+requests==2.18.4
+opencv_python==3.4.0.12
+protobuf==3.5.2.post1
+scikit_learn==0.19.1

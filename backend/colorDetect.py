@@ -18,8 +18,12 @@ from sklearn.metrics.pairwise import euclidean_distances as ED
 import math
 import sys
 import os
+from difflib import SequenceMatcher
+import winsound
+
 
 input = sys.argv[1]
+freq = 5
 
 # path to google APi json file
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="googleAPI/perkins-hackathon-OCR-b116d4935f42.json"
@@ -43,7 +47,7 @@ def detect_text(path):
     print('Texts:')
 
     for text in texts:
-        print('\n"{}"'.format(text.description))
+        # print('\n"{}"'.format(text.description))
 
         vertices = (['({},{})'.format(vertex.x, vertex.y)
                     for vertex in text.bounding_poly.vertices])
@@ -62,7 +66,7 @@ def detect_text(path):
         centroids_list.append((c_x,c_y))
         text_list.append(text.description)
 
-        print('bounds: {}'.format(','.join(vertices)))
+        # print('bounds: {}'.format(','.join(vertices)))
     return centroids_list,text_list,cordinates_list
 
 
@@ -132,6 +136,28 @@ def get_centroid(coords,ind):
         avg_y+=each[1]
     return((avg_x/4,avg_y/4))
 
+def beep_gps(curr,goal_ind,coords):
+    max_dist = get_euclidean_distance(coords[0][0],coords[0][2])/2
+    freq = 1
+    if(is_inside(curr,goal_ind,coords)==1):
+        freq = 0
+        return
+    else:
+        cent = get_centroid(coords,goal_ind)
+        dist = get_euclidean_distance(curr,cent)
+        ratio = dist/max_dist
+        if(ratio<0.2):
+            freq = 5
+        elif(ratio<0.3):
+            freq = 4
+        elif(ratio<0.5):
+            freq= 3
+        elif(ratio<0.7):
+            freq = 2
+        else:
+            freq = 1
+    return freq
+
 def is_inside(curr,goal_ind,new_coords):
     x = curr[0]
     y = curr[1]
@@ -176,11 +202,15 @@ def gps(curr,goal_ind,coords):
         if(curr[0]>=coords[goal_ind][0][0] and curr[0]<=coords[goal_ind][1][0] ):
             ans+=""
         elif(cent[0]>curr[0]):
-            ans+=" right"
-        elif(cent[0]<curr[0]):
             ans+=" left"
+        elif(cent[0]<curr[0]):
+            ans+=" right"
         print(ans)
         return(ans)
+
+def longestcommonsubstring(string1,string2):
+    match = SequenceMatcher(None, string1, string2).find_longest_match(0, len(string1), 0, len(string2))
+    return(string1[match.a: match.a + match.size])
 
 #########
 
@@ -192,9 +222,10 @@ timer = 0
 fps = 30
 
 def startLoop():
+    global freq
     #cv2.namedWindow("webcam-feed")
     cam = cv2.VideoCapture(0)
-
+    base = cv2.imread(path1)
     if cam.isOpened(): # try to get the first frame
         ret, frame = cam.read()
     else:
@@ -244,7 +275,7 @@ def startLoop():
 
         #Tracking the yellow Color
         (_,contours,hierarchy)=cv2.findContours(yellow,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-        areaMax = 100
+        areaMax = 200
         x = 0
         y = 0
         w = 0
@@ -266,27 +297,62 @@ def startLoop():
         position = (int(x+(w/2)),int(y+(h/2)))
         fontScale = 1
         fontColor = (0,255,0)
-        lineType  = 2
-        cv2.imshow("Color Tracking",frame)
+        lineType  = 1
+        cv2.putText(base,"+", position,font,fontScale,fontColor,lineType)
+        cv2.imshow("Color Tracking",base)
         cv2.putText(res2,"+", position,font,fontScale,fontColor,lineType)
 
         #cv2.putText(res2,"yellow",(x,y),cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,255,0))
 
         #cv2.imshow("Redcolour",red)
         #cv2.imshow("red",res)
-        cv2.imshow("yellow",res2)
+        cv2.imshow("yellow",frame)
 
         frames+=1
         timer = frames/fps
-        if timer % 4 == 0:
+        if frames % 6 == 0:
             curr = (x,y)
+            #beep_gps(curr,goal_index,coords)
+# ##################################################################
+            goal_index = 2
+# HARD CODED GOAL INDEX TO 1
+#####################################################################
 
-            speak_out = gps(curr,3,new_coords1)
-            speak = wincl.Dispatch("SAPI.SpVoice")
-            speak.Speak(speak_out)
-            print("Bot spoke! | msg: {} at time : {} sec".format(speak_out,timer))
+            freq = beep_gps(curr,goal_index,new_coords1)
+            speak_out = gps(curr,goal_index,new_coords1)
+            print("X {} Y: {}".format(x,y))
+            #speak = wincl.Dispatch("SAPI.SpVoice")
+            #speak.Speak(speak_out)
+            #print("\a")
+            frequency = 500  # Set Frequency To 2500 Hertz
+            duration = 6  # Set Duration To 1000 ms == 1 second
+
+            if freq == 1 and frames % 30 == 0:
+                frequency = 100
+                winsound.Beep(frequency, duration)
+            elif freq == 2 and frames % 24 == 0:
+                frequency = 400
+                winsound.Beep(frequency, duration)
+            elif freq == 3 and frames % 18 == 0:
+                frequency = 1000
+                winsound.Beep(frequency, duration)
+            elif freq == 4 and frames % 12 == 0:
+                frequency = 1800
+                winsound.Beep(frequency, duration)
+            elif freq == 5 and frames % 6 == 0:
+                frequency = 2500
+                winsound.Beep(frequency, duration)
+
+            print("Msg: {} at time : {} sec".format(speak_out,timer))
             frame+=1
             timer = frames/fps
+            if speak_out=='Reached':
+                speak = wincl.Dispatch("SAPI.SpVoice")
+                speak.Speak(speak_out)
+
+                break
+
+
 
         key = cv2.waitKey(20) # milliseconds
         if frames%30 == 0:
@@ -297,17 +363,41 @@ def startLoop():
 
         if key == 32:  # SPACE pressed
             img_name = "opencv_frame_{}.png".format(img_counter)
-            cv2.imwrite(img_name, frame)
+            gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            #gray_image = cv2.flip(gray_image,1)
+            cv2.imwrite(img_name, cv2.flip(frame,1))
             print("{} written!".format(img_name))
             img_counter += 1
+
     cam.release()
     cv2.destroyAllWindows()
     cv2.destroyWindow("yellow")
 
+def longestcommonsubstring(string1,string2):
+    match = SequenceMatcher(None, string1, string2).find_longest_match(0, len(string1), 0, len(string2))
+    return(string1[match.a: match.a + match.size])
+
+def get_index_from_text(text,t):
+    max_len = 0
+    max_ind = -1
+    for i in range(1,len(t)):
+#         print(longestSubstringFinder(text,t[i]))
+        t_len = len(longestcommonsubstring(text,t[i]))
+#         print(t_len)
+#         print(t[i])
+        if(t_len>max_len):
+            max_len = t_len
+            max_ind = i
+    return(max_ind)
+
+
 
 ############## START RUN ###########
 
-path1 = 'testImages/opencv_frame_0.png'
+# base map
+#
+path1 = 'testImages/basemap.png'
+
 c1,t1,coords1 = detect_text(path1)
 merging_indices1 = get_merging_indices(c1)
 # coords = list(original_coords)
@@ -320,6 +410,10 @@ new_t1 = []
 new_coords1 = []
 new_t1,new_coords1  = get_merged_lists(merging_indices1,coords1,t1)
 
+for i in range(1,len(new_t1)):
+    print(new_t1[i])
+    print(i)
+    print()
 
 if input.lower() == "start":
     startLoop() ### start infinite loop

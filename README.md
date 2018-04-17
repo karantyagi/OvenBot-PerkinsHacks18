@@ -6,16 +6,19 @@ A program to help improve the user experience of the visually impaired when work
 @authors: <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Pratyusha Karnati<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hitesh Verma<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Karan Tyagi<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rohith Kanuparti<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Max Davidowitz<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Winston Moh T.<br/> </i>
          
-@PerkinsHacks
+@PerkinsHacks - Perkins School for the Blind
 
 # Table of Contents
 [Prerequisites](#prerequisites)<br/>
 [Procedure](#procedure)<br/>
 [Run the sample application](#run_the_sample_application)<br/>
 [Conclusion](#conclusion)<br/>
+[OvenBot Final Project](https://devpost.com/software/making-a-meal)<br/>
 
 # <a name="prerequisites"></a>Prerequisites
 ## Platform requirements
